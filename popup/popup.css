@@ -1,0 +1,408 @@
+/* LinkedIn Connection Notes - Popup Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 400px;
+  min-height: 500px;
+  max-height: 600px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Header Section */
+.header {
+  background: linear-gradient(135deg, #0073b1 0%, #005885 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Stats Section */
+.stats {
+  background: white;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0073b1;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Search Section */
+.search-container {
+  background: white;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #0073b1;
+  background-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 115, 177, 0.1);
+}
+
+#searchInput::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Connections List Container */
+.connections-container {
+  background: white;
+  max-height: 420px;
+  overflow-y: auto;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.connections-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual Connection Items */
+.connection-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.connection-item:hover {
+  background-color: #f8f9fa;
+  border-left: 3px solid #0073b1;
+  padding-left: 17px;
+}
+
+.connection-item:last-child {
+  border-bottom: none;
+}
+
+.connection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.connection-info {
+  flex: 1;
+}
+
+.connection-name {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.connection-username {
+  font-size: 12px;
+  color: #666;
+  font-weight: 400;
+}
+
+.connection-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.connection-item:hover .connection-actions {
+  opacity: 1;
+}
+
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #e3f2fd;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+}
+
+.connection-note {
+  margin-top: 8px;
+}
+
+.note-content {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #444;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+
+.note-timestamp {
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Empty/No Data State */
+.no-data,
+.error {
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  border: none !important;
+  background: white;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+/* Header Actions Buttons */
+.header-actions .export-btn,
+.header-actions .delete-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-actions .export-btn {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-actions .export-btn:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.header-actions .export-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.header-actions .delete-btn {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-actions .delete-btn:hover {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.header-actions .delete-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+}
+
+/* Button ripple effect */
+.header-actions .export-btn::before,
+.header-actions .delete-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.header-actions .export-btn:active::before,
+.header-actions .delete-btn:active::before {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+}
+
+.header-actions .export-btn span,
+.header-actions .delete-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.delete-btn {
+  background-color: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #d32f2f;
+}
+
+/* Custom Scrollbar */
+.connections-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.connections-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.connections-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.connections-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive Design */
+@media (max-width: 450px) {
+  body {
+    width: 100%;
+    min-width: 320px;
+  }
+
+  .header,
+  .search-container,
+  .connections-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .connection-item {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-actions .export-btn,
+  .header-actions .delete-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Animation for smooth loading */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer Section */
+.footer {
+  background: #f8f9fa;
+  padding: 12px 20px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  margin-top: auto;
+}
+
+.footer p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.footer a {
+  color: #0073b1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #005885;
+  text-decoration: underline;
+}
