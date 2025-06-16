@@ -33,6 +33,10 @@ This extension prioritizes your privacy:
 - No tracking or analytics
 - Only requires storage permission
 
+## Inspiration
+
+This project was primarily inspired by [@emrecoban/twitterNote](https://github.com/emrecoban/twitterNote) - a Chrome extension that helps you take notes about people you've blocked or muted on Twitter. We adapted this concept for LinkedIn connections to help users manage their professional network more effectively.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
