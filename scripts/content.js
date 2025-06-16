@@ -1,5 +1,10 @@
 // LinkedIn Profile Detection and Note Injection
 
+// Global variables for debouncing and state management
+let injectionTimeout = null;
+let isInjecting = false;
+let lastInjectedUsername = null;
+
 // Check if we're on a LinkedIn profile page
 const isLinkedInProfile = () => {
   return (
@@ -70,8 +75,25 @@ const injectNoteInterface = (profileData) => {
     return;
   }
 
+  // Prevent multiple simultaneous injections
+  if (isInjecting) {
+    return;
+  }
+
+  // Don't re-inject for the same user unless something changed
+  if (lastInjectedUsername === profileData.username) {
+    const existingInterface = document.getElementById("linkedinNoteAction");
+    if (existingInterface) {
+      return; // Interface already exists for this user
+    }
+  }
+
+  isInjecting = true;
+  lastInjectedUsername = profileData.username;
+
   const injectionPoint = findInjectionPoint();
   if (!injectionPoint) {
+    isInjecting = false;
     return;
   }
 
@@ -117,6 +139,9 @@ const injectNoteInterface = (profileData) => {
 
   // Load existing note for this profile
   loadExistingNote(profileData.username, noteTextarea);
+
+  // Reset injection flag after successful injection
+  isInjecting = false;
 
   // Add auto-save functionality
   noteTextarea.addEventListener("input", () => {
@@ -226,6 +251,21 @@ const saveNote = (username, noteContent, fullName, callback) => {
     });
 };
 
+// Debounced injection function
+const debouncedInject = (profileData, delay = 500) => {
+  // Clear any existing timeout
+  if (injectionTimeout) {
+    clearTimeout(injectionTimeout);
+  }
+
+  injectionTimeout = setTimeout(() => {
+    if (profileData && profileData.username) {
+      injectNoteInterface(profileData);
+    }
+    injectionTimeout = null;
+  }, delay);
+};
+
 // Main function to handle profile detection and injection
 const handleProfileDetection = () => {
   if (!isLinkedInProfile()) {
@@ -236,7 +276,7 @@ const handleProfileDetection = () => {
   setTimeout(() => {
     const profileData = getProfileInfo();
     if (profileData.username) {
-      injectNoteInterface(profileData);
+      debouncedInject(profileData);
     }
   }, 1000);
 };
@@ -263,12 +303,10 @@ const observer = new MutationObserver((mutationsList) => {
         );
 
         if (hasProfileContent) {
-          setTimeout(() => {
-            const profileData = getProfileInfo();
-            if (profileData.username) {
-              injectNoteInterface(profileData);
-            }
-          }, 500);
+          const profileData = getProfileInfo();
+          if (profileData.username) {
+            debouncedInject(profileData, 200); // Shorter delay for mutation observer
+          }
           break;
         }
       }
@@ -294,6 +332,7 @@ let currentUrl = window.location.href;
 const checkUrlChange = () => {
   if (currentUrl !== window.location.href) {
     currentUrl = window.location.href;
+    lastInjectedUsername = null; // Reset for new page
     handleProfileDetection();
   }
 };
