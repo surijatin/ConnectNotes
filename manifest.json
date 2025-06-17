@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "LinkedIn Notes",
   "description": "Take notes about your LinkedIn connections.",
-  "version": "0.1",
+  "version": "0.2",
   "action": {
     "default_popup": "./popup/popup.html",
     "default_icon": "./images/linkedinNote.png"
@@ -17,9 +17,9 @@
   ],
   "permissions": ["storage"],
   "icons": {
-    "16": "./images/linkedinNote.png",
-    "32": "./images/linkedinNote.png",
-    "48": "./images/linkedinNote.png",
-    "128": "./images/linkedinNote.png"
+    "16": "./images/linkedInNote_16px.png",
+    "32": "./images/linkedInNote_32px.png",
+    "48": "./images/linkedInNote_48px.png",
+    "128": "./images/linkedInNote.png"
   }
 }
